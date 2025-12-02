@@ -5,7 +5,6 @@
 
 int main(void)
 {
-
     const char *inputFile = "../data/Matrice_Projet.txt";
 
     printf("* Reading graph ...\n");
