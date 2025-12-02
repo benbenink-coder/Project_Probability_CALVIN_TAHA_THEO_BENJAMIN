@@ -38,7 +38,7 @@ int main(void)
     printf(" |\n--------------------");
 
     printf("\n* After n=2:\n");
-
+    matrix2 = matrix;
     for (int i=0; i<1; i++) {
         matrix2 = multiply_matrix(matrix2,matrix,g.size);
     }
@@ -50,7 +50,7 @@ int main(void)
     printf(" |\n");
 
     printf("\n* After n=10:\n");
-
+    matrix2 = matrix;
     for (int i=0; i<10; i++) {
         matrix2 = multiply_matrix(matrix2,matrix,g.size);
     }
@@ -62,8 +62,22 @@ int main(void)
     printf(" |\n");
 
     printf("\n* After n=50:\n");
-
+    matrix2 = matrix;
     for (int i=0; i<50; i++) {
+        matrix2 = multiply_matrix(matrix2,matrix,g.size);
+    }
+
+    resmat = multiply_matrix(initStateMat,matrix2,g.size);
+
+    printf("|");
+    for (int i = 0; i<g.size; i++) printf(" %.4f ", resmat[0][i]);
+    printf(" |\n");
+
+    int a;
+    printf("\n* Enter a number:");
+    scanf("%d",&a);
+    matrix2 = matrix;
+    for (int i=0; i<a; i++) {
         matrix2 = multiply_matrix(matrix2,matrix,g.size);
     }
 
