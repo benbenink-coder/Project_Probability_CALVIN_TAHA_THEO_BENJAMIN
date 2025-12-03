@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <time.h>
+
 #include "utils.h"
 #include "hasse.h"
 #include "matrix.h"
@@ -73,11 +75,22 @@ int main(void)
     for (int i = 0; i<g.size; i++) printf(" %.4f ", resmat[0][i]);
     printf(" |\n");
 
-    int a;
+
+    initStateMat[0][1] = 0.2;
+    initStateMat[0][4] = 0.2;
+    initStateMat[0][11] = 0.2;
+    initStateMat[0][20] = 0.2;
+    initStateMat[0][24] = 0.2;
+
+    printf("|");
+    for (int i = 0; i<g.size; i++) printf(" %.4f ", initStateMat[0][i]);
+    printf(" |\n");
+
+    int n;
     printf("\n* Enter a number:");
-    scanf("%d",&a);
+    scanf("%d",&n);
     matrix2 = matrix;
-    for (int i=0; i<a; i++) {
+    for (int i=0; i<n; i++) {
         matrix2 = multiply_matrix(matrix2,matrix,g.size);
     }
 
@@ -86,6 +99,48 @@ int main(void)
     printf("|");
     for (int i = 0; i<g.size; i++) printf(" %.4f ", resmat[0][i]);
     printf(" |\n");
+
+    srand(time(NULL));
+    initStateMat[0][1] = 0;
+    initStateMat[0][4] = 0;
+    initStateMat[0][11] = 0;
+    initStateMat[0][20] = 0;
+    initStateMat[0][24] = 1;
+
+    printf("\n* Enter a number:");
+    scanf("%d",&n);
+    matrix2 = matrix;
+    for (int i=0; i<n; i++) {
+        matrix2 = multiply_matrix(matrix2,matrix,g.size);
+    }
+
+    resmat = multiply_matrix(initStateMat,matrix2,g.size);
+
+    printf("|");
+    for (int i = 0; i<g.size; i++) printf(" %.4f ", resmat[0][i]);
+    printf(" |\n");
+
+    initStateMat[0][1] = 0;
+    initStateMat[0][4] = 0;
+    initStateMat[0][11] = 0;
+    initStateMat[0][20] = 0;
+    initStateMat[0][0] = 0;
+
+    initStateMat[0][7] = 1;
+
+    printf("\n* Enter a number:");
+    scanf("%d",&n);
+    matrix2 = matrix;
+    for (int i=0; i<n; i++) {
+        matrix2 = multiply_matrix(matrix2,matrix,g.size);
+    }
+
+    resmat = multiply_matrix(initStateMat,matrix2,g.size);
+
+    printf("|");
+    for (int i = 0; i<g.size; i++) printf(" %.4f ", resmat[0][i]);
+    printf(" |\n");
+
 
     free_matrix(matrix,g.size);
     free_matrix(matrix2,g.size);
